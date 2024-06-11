@@ -4,7 +4,7 @@ import { Layout, Link, PopularNews, useFetchTopHeadlines, useState } from "../ex
 const Home = () => {
   const [query, setQuery] = useState('technology')
   const {article} = useFetchTopHeadlines(query)
-  console.log(article);
+  // console.log(article);
 
   return (
     <Layout setQuery={setQuery}>
@@ -18,7 +18,7 @@ const Home = () => {
 
           {article.map((e, i) => (
             e.title !== "[Removed]" ?
-            <TopHeadlinesCard e={e} i={i}/>
+            <TopHeadlinesCard e={e} key={i}/>
              : ""
           ))}
         </div>

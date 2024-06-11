@@ -1,8 +1,8 @@
 import { Link } from "../export";
 
-const TopHeadlinesCard = ({ e, i }) => {
+const TopHeadlinesCard = ({e}) => {
   return (
-    <Link to={e.url} className="top-headline-card" key={i}>
+    <Link to={e.url} className="top-headline-card">
       <div className="col gap-3 p-3">
         <p className="source-name bg-sky-500/10 text-sky-600">{e.source.name}</p>
         <h1 className="title">{e.title}</h1>
@@ -23,9 +23,9 @@ const TopHeadlinesCard = ({ e, i }) => {
   );
 };
 
-const PopularNewsCard = ({ e, i }) => {
+const PopularNewsCard = ({e}) => {
   return e.title !== "[Removed]" ? (
-    <Link to={e.url} className="popular-news-card" key={i}>
+    <Link to={e.url} className="popular-news-card">
       <p className="source-name">{e.source.name}</p>
       {e.urlToImage ? (
         <img src={e.urlToImage} alt={e.title} className="popular-news-img" />

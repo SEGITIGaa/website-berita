@@ -5,9 +5,7 @@ import Category from "./Category";
 const Navbar = ({setQuery}) => {
   
   const topic = ["business","entertainment","general", "health", "science", "sports", "technology"]
-  const path = '/article/category/'
   const location = useLocation().pathname
-  console.log(location);
   
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -19,7 +17,7 @@ const Navbar = ({setQuery}) => {
   return (
     <div className="navbar">
       <form onSubmit={handleSubmit} className="form-navbar">
-        <img src="/img/NEWS.svg" alt="logo" className="w-1/5 md:w-28" />
+        <img src="/img/NEWS.svg" alt="logo" className="w-1/5 md:w-28r" />
         <input type="search" name="search" id="search" className="search" placeholder="find the topic here..." />
       </form>
       <div className="category-container">
@@ -27,7 +25,7 @@ const Navbar = ({setQuery}) => {
             <p className={`category-name ${location === '/' ? 'text-white' : 'text-dark'}`}>Home</p>
           </Link>
         {topic.map((e, i) => (
-          <Category e={e} i={i}/>
+          <Category e={e} key={i}/>
         ))}
       </div>
     </div>

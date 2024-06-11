@@ -2,8 +2,8 @@ import { Layout, Link, useFetchTopHeadlines, useParams, useState } from '../expo
 
 const ArticleByCategory = () => {
     const slug = useParams().slug
-    const [query, setQuery] = useState(slug)
-    const {article} = useFetchTopHeadlines(query)
+    const [query, setQuery] = useState('')
+    const {article} = useFetchTopHeadlines(query !== "" ? query : slug)
     const [domain, setDomain] = useState('')
 
     const uniqueNames = new Set();
@@ -43,8 +43,8 @@ const ArticleByCategory = () => {
             </select>
            
             <h1 className="text-2xl font-bold text-slate-900">
-            {query !== "technology" ? 
-            `hasil untuk '${query}'` : 'berita terbaru'}
+            {query === "" ? 
+            `berita seputar ${slug}` : 'berita terbaru'}
             </h1>
             {filterSource.map((e, i) => (
             e.title !== "[Removed]" ?

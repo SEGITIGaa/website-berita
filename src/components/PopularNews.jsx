@@ -12,7 +12,7 @@ const PopularNews = () => {
     </div>
     <div className="row md:col w-full overflow-x-scroll gap-3">
       {article.slice(0,5).map((e, i) => (
-        <PopularNewsCard e={e} i={i}/>
+        <PopularNewsCard e={e} key={i}/>
       ))}
     </div>
     </div>
