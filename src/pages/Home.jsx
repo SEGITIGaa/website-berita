@@ -4,7 +4,6 @@ import { Layout, Link, PopularNews, useFetchTopHeadlines, useState } from "../ex
 const Home = () => {
   const [query, setQuery] = useState('technology')
   const {article} = useFetchTopHeadlines(query)
-  // console.log(article);
 
   return (
     <Layout setQuery={setQuery}>
