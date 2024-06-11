@@ -1,6 +1,5 @@
-import { Link } from "../export";
-import { useLocation } from "react-router-dom";
-import Category from "./Category";
+import { Link, Category, useLocation } from "../export";
+
 
 const Navbar = ({setQuery}) => {
   
