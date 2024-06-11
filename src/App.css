@@ -1,38 +1,88 @@
-.App {
-  text-align: center;
-}
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@layer utilities {
+  *::-webkit-scrollbar {
+    @apply hidden;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@layer components {
+  /* TYPOGRAPHY */
+  .title {
+    @apply text-2xl font-bold text-dark;
   }
-  to {
-    transform: rotate(360deg);
+  .header {
+    @apply text-lg font-bold text-dark;
+  }
+  .popular-news-title {
+    @apply text-sm font-semibold text-dark truncate;
+  }
+  .date {
+    @apply text-xs text-slate-500 font-normal;
+  }
+  .desc {
+    @apply text-sm text-slate-500 font-normal;
+  }
+  .source-name {
+    @apply text-xs bg-red-500/10 text-red-600 w-max rounded-full px-3 py-1 font-semibold;
+  }
+
+  /* FLEXBOX */
+  .col {
+    @apply flex flex-col;
+  }
+  .row {
+    @apply flex flex-row;
+  }
+
+  /* IMAGE */
+  .news-img {
+    @apply rounded-lg max-h-72 object-cover;
+  }
+  .popular-news-img {
+    @apply h-32 w-full rounded-lg object-cover;
+  }
+
+  /* CARD */
+  .top-headline-card {
+    @apply col gap-8 rounded-xl bg-white shadow-sm p-5 shadow-light-grey;
+  }
+  .popular-news-card {
+    @apply col gap-3 rounded-xl bg-white shadow-sm p-2 h-max  min-w-52 shadow-light-grey;
+  }
+
+  /* INPUT */
+  .search {
+    @apply bg-light-grey px-5 py-2 outline-none focus:ring-2 rounded-full w-full md:w-2/5 placeholder:text-sm;
+  }
+
+  /* CATEGORY */
+  .category-container {
+    @apply flex w-full overflow-x-scroll;
+  }
+  .category {
+    @apply w-full text-center transition-all col
+      items-center justify-center duration-300 py-3 px-5;
+  }
+  .category-name {
+    @apply font-medium text-sm;
+  }
+  .true {
+    @apply bg-dark hover:bg-dark/70;
+  }
+  .false {
+    @apply bg-white hover:bg-light-grey;
+  }
+
+  /* NAVBAR */
+  .navbar {
+    @apply col shadow-lg shadow-light-grey/70 sticky w-full;
+  }
+  .form-navbar {
+    @apply col md:row md:items-center justify-between px-5 gap-3 md:px-10 py-8;
   }
 }
