@@ -85,4 +85,10 @@
   .form-navbar {
     @apply col md:row md:items-center justify-between px-5 gap-3 md:px-10 py-8;
   }
+  
+  /* LOADING */
+    .skeleton-loading {
+      @apply  rounded-full bg-gray-200 animate-pulse h-5;
+    }
+
 }

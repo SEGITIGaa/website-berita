@@ -5,10 +5,12 @@ import "./App.css";
 // COMPONENTS 
 import Navbar from './components/Navbar';
 import PopularNews from "./components/PopularNews";
+import {TopHeadlinesCard, PopularNewsCard} from "./components/Card";
+import {Loading, TopHeadlinesLoading, PopularNewsLoading} from "./components/Loading";
 
 // LAYOUT
 import Layout from "./layouts/Layout";
 // FETCH 
 import { useFetchTopHeadlines } from "./functions/FetchApi";
 
-export {Route, Router, Routes, Link, useParams, useState, useEffect, lazy, Suspense, Navbar, Layout, PopularNews, useFetchTopHeadlines}
+export {Route, Router, Routes, Link, useParams, useState, useEffect, lazy, Suspense, Navbar, Layout, PopularNews, useFetchTopHeadlines, TopHeadlinesCard, PopularNewsCard, Loading, TopHeadlinesLoading, PopularNewsLoading}

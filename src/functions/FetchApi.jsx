@@ -1,66 +1,37 @@
 import { useState, useEffect } from "../export";
 
 export function useFetchTopHeadlines(query, sortBy) {
-//   const API_KEY = process.env.REACT_APP_NEWS_API_KEY;
-//   const [article, setArticle] = useState([]);
+  const API_KEY = process.env.REACT_APP_NEWS_API_KEY;
+  const [article, setArticle] = useState([]);
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
 
-//   const getArticle = async () => {
-//     // try {
-//     const res = await fetch(
-//       `https://newsapi.org/v2/everything?q=${query}&language=en&sortBy=${sortBy}&pageSize=23&page=1&apiKey=${API_KEY}`
-//     );
+  const getArticle = async () => {
+    try {
+        setLoading(true)
+        setError(null)
 
-//     // if (!res.ok) {
-//     //     throw new Error('maaf, terjadi kesalahan saat memuat berita')
-//     // }
+        const res = await fetch(
+        `https://newsapi.org/v2/everything?q=${query}&language=en&sortBy=${sortBy}&pageSize=23&page=1&apiKey=${API_KEY}`
+        );
 
-//     const data = await res.json();
-//     setArticle(data.articles);
+        if (!res.ok) {
+            throw new Error('maaf, terjadi kesalahan saat memuat berita')
+        }
 
-//     // } catch (error) {
+        const data = await res.json();
+        setArticle(data.articles);
 
-//     // }
-//   };
-//   useEffect(() => {
-//     getArticle()
-//   }, [query]);
-//   return { article };
-
-const API_KEY = process.env.REACT_APP_NEWS_API_KEY;
-const [article, setArticle] = useState([]);
-const [error, setError] = useState(null);
-const [loading, setLoading] = useState(true);
-
-const getArticle = async () => {
-  try {
-    setLoading(true);
-    setError(null);
-    
-    const res = await fetch(
-      `https://newsapi.org/v2/everything?q=${query}&language=en&sortBy=${sortBy}&pageSize=23&page=1&apiKey=${API_KEY}`
-    );
-
-    if (res.status === 426) {
-      const upgradeHeader = res.headers.get('Upgrade');
-      throw new Error(`Upgrade required: ${upgradeHeader}`);
+    } catch (error) {
+        setError(error.message)
+    }finally{
+        setLoading(false)
     }
+  };
 
-    if (!res.ok) {
-      throw new Error('Sorry, there was an error loading the news');
-    }
+  useEffect(() => {
+    getArticle()
+  }, [query]);
 
-    const data = await res.json();
-    setArticle(data.articles);
-  } catch (error) {
-    setError(error.message);
-  } finally {
-    setLoading(false);
-  }
-};
-
-useEffect(() => {
-  getArticle();
-}, [query, sortBy]);
-
-return { article, loading, error };
+  return { article, loading, error };
 }
