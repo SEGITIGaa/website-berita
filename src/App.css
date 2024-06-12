@@ -30,6 +30,9 @@
   .source-name {
     @apply text-xs bg-red-500/10 text-red-600 w-max rounded-full px-3 py-1 font-semibold;
   }
+  .error {
+    @apply font-medium text-center text-gray-400 opacity-70;
+  }
 
   /* FLEXBOX */
   .col {

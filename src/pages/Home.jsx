@@ -2,7 +2,7 @@ import { Layout, PopularNews, useFetchTopHeadlines, useState, TopHeadlinesCard, 
 
 const Home = () => {
   const [query, setQuery] = useState("technology");
-  const { article, loading, next, prev, page } = useFetchTopHeadlines(query);
+  const { article, loading, next, prev, page, error } = useFetchTopHeadlines(query);
   
   return (
     <Layout setQuery={setQuery}>
@@ -19,6 +19,7 @@ const Home = () => {
           ) : (
             <TopHeadlinesLoading />
           )}
+          <h1 className="error">{error}</h1>
           <div className="row items-center w-full justify-end">
             <button type="submit" onClick={prev} disabled={page === 1} className="rounded-lg px-4 py-2 text-dark font-semibold disabled:text-gray-300">prev</button>
             <button type="submit" onClick={next} className="rounded-lg px-4 py-2 text-dark font-semibold">next</button>

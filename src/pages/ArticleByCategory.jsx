@@ -1,9 +1,9 @@
-import { Layout, TopHeadlinesCard, useFetchTopHeadlines, useParams, useState} from "../export";
+import { Layout, TopHeadlinesCard, TopHeadlinesLoading, useFetchTopHeadlines, useParams, useState} from "../export";
 
 const ArticleByCategory = () => {
   const slug = useParams().slug;
   const [query, setQuery] = useState("");
-  const { article } = useFetchTopHeadlines(query !== "" ? query : slug);
+  const { article, loading, next, prev, page, error} = useFetchTopHeadlines(query !== "" ? query : slug);
   const [domain, setDomain] = useState("");
 
   const uniqueNames = new Set();
@@ -24,6 +24,8 @@ const ArticleByCategory = () => {
     }
   });
 
+  console.log(filterSource);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const value = e.target.value;
@@ -42,7 +44,7 @@ const ArticleByCategory = () => {
             name="source"
             id="source"
             onChange={handleSubmit}
-            className="outline-none bg-light-grey text-dark font-semibold text-lg focus:ring-2 py-2 px-4 w-full rounded-lg md:w-1/4"
+            className="outline-none cursor-pointer text-dark font-semibold text-sm focus:ring-2 py-2 px-4 w-full rounded-lg md:w-1/4"
           >
             <option value="">choose news source</option>
             {uniqueArticles.map((e, i) =>
@@ -57,9 +59,17 @@ const ArticleByCategory = () => {
           </select>
         </div>
 
-        {filterSource.map((e, i) =>
-          e.title !== "[Removed]" ? <TopHeadlinesCard e={e} key={i} /> : ""
-        )}
+        {filterSource.length > 0 ? 
+            filterSource.map((e, i) =>
+            e.title !== "[Removed]" ? <TopHeadlinesCard e={e} key={i} /> : ""
+            ) : 
+            <h1 className="error">news is not available yet</h1>
+        }
+        {loading ? <TopHeadlinesLoading/> : ""}
+        <div className="row items-center w-full justify-end">
+            <button type="submit" onClick={prev} disabled={page === 1} className="rounded-lg px-4 py-2 text-dark font-semibold disabled:text-gray-300">prev</button>
+            <button type="submit" onClick={next} className="rounded-lg px-4 py-2 text-dark font-semibold">next</button>
+          </div>
       </div>
     </Layout>
   );
