@@ -26,7 +26,7 @@ export function useFetchTopHeadlines(query, sortBy) {
       setError(null);
 
       const res = await fetch(
-        `https://newsapi.org/v2/everything?q=${debouncedQuery}&language=en&sortBy=${sortBy}&pageSize=50&page=${page}&apiKey=8cdf25763d46423486b050053cea9769`
+        `https://newsapi.org/v2/everything?q=${debouncedQuery}&language=en&sortBy=${sortBy}&pageSize=50&page=${page}&apiKey=${API_KEY}`
       );
 
       if (res.status === 426) {
