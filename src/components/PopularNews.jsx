@@ -1,9 +1,9 @@
 import { useFetchTopHeadlines, PopularNewsCard, PopularNewsLoading,} from "../export";
+import { useFetchLatestNews } from "../functions/FetchApi";
 
 const PopularNews = () => {
-  const { article, loading, error } = useFetchTopHeadlines(
-    "politic",
-    "popularity,publishedAt"
+  const { latestNews, loading, error } = useFetchLatestNews(
+    "popularity"
   );
 
   return (
@@ -12,7 +12,7 @@ const PopularNews = () => {
 
       <div className="row md:col w-full overflow-x-scroll gap-3 ">
         {!loading ? (
-          article.slice(0, 5).map((e, i) => <PopularNewsCard e={e} key={i} />)
+          latestNews.slice(0, 5).map((e, i) => <PopularNewsCard e={e} key={i} />)
         ) : (
           <PopularNewsLoading />
         )}

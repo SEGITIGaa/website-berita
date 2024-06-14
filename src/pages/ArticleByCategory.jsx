@@ -3,7 +3,7 @@ import { Layout, TopHeadlinesCard, TopHeadlinesLoading, useFetchTopHeadlines, us
 const ArticleByCategory = () => {
   const slug = useParams().slug;
   const [query, setQuery] = useState("");
-  const { article, loading, next, prev, page, error} = useFetchTopHeadlines(query !== "" ? query : slug);
+  const { article, loading, next, prev, page} = useFetchTopHeadlines(query !== "" ? query : slug);
   const [domain, setDomain] = useState("");
 
   const uniqueNames = new Set();

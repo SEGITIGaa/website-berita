@@ -64,3 +64,42 @@ export function useFetchTopHeadlines(query, sortBy) {
 
   return { article, loading, error, page, next, prev };
 }
+
+export function useFetchLatestNews(sortBy) {
+  const API_KEY = process.env.REACT_APP_NEWS_API_KEY;
+  const [latestNews, setLatestNews] = useState([])
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const getLatestNews = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+
+      const res = await fetch(`https://newsapi.org/v2/top-headlines?country=us&sortBy=${sortBy}&apiKey=${API_KEY}`)
+    
+      if (res.status === 426) {
+        throw new Error('Sorry, today has reached the maximum request limit');
+      }
+      if (res.status === 429) {
+        throw new Error('Too many requests!😫');
+      }
+      if (!res.ok) {
+        throw new Error('Sorry, there seems to be a mistake😥');
+      }
+
+      const data = await res.json();
+      setLatestNews(data.articles)
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useState(() => {
+    getLatestNews()
+  },[sortBy])
+
+  return {latestNews, loading, error}
+}
