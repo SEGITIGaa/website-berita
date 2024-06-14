@@ -58,7 +58,10 @@ const ArticleByCategory = () => {
             )}
           </select>
         </div>
-
+        {domain !== '' ?
+            <h1 className="font-medium text-center text-gray-400 opacity-70">{filterSource.length} results</h1>
+            : ""
+         }
         {filterSource.length > 0 ? 
             filterSource.map((e, i) =>
             e.title !== "[Removed]" ? <TopHeadlinesCard e={e} key={i} /> : ""
